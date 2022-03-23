@@ -7,7 +7,7 @@ namespace app\config;
 class Database {
 
     const DB_HOST = 'localhost';
-    const DB_NAME = 'sandbox_db';
+    const DB_NAME = 'internet_clients';
     const DB_USER = 'root';
     const DB_PASS = 'root';
     const DB_CHAR = 'utf8';

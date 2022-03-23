@@ -8,7 +8,6 @@ abstract class Model
 {
     protected $id;
     protected $name;
-    protected $timestamp;
 
     /**
      * @return mixed

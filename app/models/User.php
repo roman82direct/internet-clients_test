@@ -24,14 +24,14 @@ class User extends Model
 
     public function add()
     {
-        $sql = "INSERT INTO users (user_name, user_email, user_role, user_password, date_reg) VALUES (:name, :email, :role, :password, :date_reg)";
-        $arg = ['name' => $this->name, 'email' => $this->email, 'role'=>$this->role, 'password' => md5($this->password), 'date_reg' => date('Y-m-d H:i:s')];
+        $sql = "INSERT INTO users (name, email, pass, role, created_at) VALUES (:name, :email, :pass,  :role, :created_at)";
+        $arg = ['name' => $this->name, 'email' => $this->email, 'role'=>$this->role, 'pass' => md5($this->password)];
         Database::insert($sql, $arg);
     }
 
     public function login($email, $pass)
     {
-        $sql = "SELECT user_id, user_name, user_email, user_password FROM users WHERE user_email = :email";
+        $sql = "SELECT id, name, email, pass FROM users WHERE email = :email";
         $arg = ['email' => $email];
         $passHash = md5($pass);
         $user = Database::getRow($sql, $arg);

@@ -1,0 +1,17 @@
+<!--modal for sign in form-->
+<div id="modalSign" class="modal" data-modal="signIn">
+    <span class="modalClose">X</span>
+    <p>Введите Ваши учётные данные</p>
+    <div>
+        <form action="/routes/auth.php" method="post">
+            <fieldset style="border: none; width: 500px; margin: 0 auto; padding: 0px">
+                <input type="text" name="name" placeholder="Ваше имя" autofocus><br>
+                <input type="text" name="login" placeholder="Введите login"><br>
+                <input type="email" name="email"  placeholder="E-MAIL" pattern="\S+@[a-z]+.[a-z]+" required><br>
+                <input type="password" name="pass" placeholder="Пароль" required><br>
+                <input type="submit" value="Регистрация">
+            </fieldset>
+        </form>
+    </div>
+</div>
+
