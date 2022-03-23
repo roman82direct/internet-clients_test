@@ -1,0 +1,38 @@
+
+#header{
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid deepskyblue;
+}
+
+#authBlock{
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#authUser{
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#userName{
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.main{
+    height: 83vh;
+}
+
+.resp {
+    text-align: center;
+    color: deepskyblue;
+}
+
+footer{
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid deepskyblue;
+}
