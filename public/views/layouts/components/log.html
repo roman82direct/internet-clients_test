@@ -3,10 +3,11 @@
     <span class="modalClose">X</span>
     <p>Введите Ваши учётные данные</p>
     <div>
-        <form action="/routes/auth.php" method="post">
+        <form action="../routes/auth.php" method="post">
             <fieldset style="border: none; width: 500px; margin: 0 auto; padding: 0px">
                 <input type="email" name="email" placeholder="EMAIL" autofocus required pattern="\S+@[a-z]+.[a-z]+"><br>
                 <input type="password" name="pass" placeholder="Пароль" required><br>
+                <input type="hidden" name="action" value="login"><br>
                 <input type="submit" value="Войти">
             </fieldset>
         </form>

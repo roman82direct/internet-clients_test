@@ -1,9 +1,6 @@
 <header>
     <div>
         <div id="header">
-            <div>
-                <p><?php echo $_SESSION['session_id']?></p>
-            </div>
             <div id="authBlock">
                 <button class="openModal" data-modal="signIn">Register</button>
                 <button class="openModal" data-modal="logIn">Log In</button>
