@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
             parentModal.classList.remove('active');
             overlay.classList.remove('active');
         });
-
     });
 
     overlay.addEventListener('click', function() {
