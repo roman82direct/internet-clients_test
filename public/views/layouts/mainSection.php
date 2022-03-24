@@ -12,16 +12,22 @@ $goods = (new Good())::getAll();
 <section>
     <?php
     foreach ($main_categories as $main_category){
-        echo '</br>'.$main_category['name'].' id = '.$main_category['id'].
-            '<a href="../routes/actions.php?action=main&id='.$main_category['id'].'">Удалить</a>'. '</br>';
+        if ($user['role'] == 'admin'){
+            echo '</br>'.$main_category['name'].' id = '.$main_category['id'].' '.
+                '<a href="../routes/actions.php?action=main&id='.$main_category['id'].'">Удалить</a>'. '</br>';
+        } else echo '</br>'.$main_category['name'].' id = '.$main_category['id'].'</br>';
 
-            foreach ((new SecondCategory())->getByMainId($main_category['id']) as $second_category){
-                echo '_ _ _'.$second_category['name'].' id = '.$second_category['id'].
-                    '<a href="../routes/actions.php?action=second&id='.$second_category['id'].'">Удалить</a>'.'</br>';
+            foreach ((new SecondCategory())->getByMainId($main_category['id']) as $second_category) {
+                if ($user['role'] == 'admin') {
+                    echo '_ _ _' . $second_category['name'] . ' id = ' . $second_category['id'] . ' ' .
+                        '<a href="../routes/actions.php?action=second&id=' . $second_category['id'] . '">Удалить</a>' . '</br>';
+                } else echo '_ _ _' . $second_category['name'] . ' id = ' . $second_category['id'] . '</br>';
 
-                foreach ((new Good())->getByCategorieId($second_category['id']) as $item){
-                        echo '_ _ _ _ _'.$item['name'].' id = '.$item['id'].
-                            '<a href="../routes/actions.php?action=good&id='.$item['id'].'">Удалить</a>'.'</br>';
+                foreach ((new Good())->getByCategorieId($second_category['id']) as $item) {
+                    if ($user['role'] == 'admin') {
+                        echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . ' ' .
+                            '<a href="../routes/actions.php?action=good&id=' . $item['id'] . '">Удалить</a>' . '</br>';
+                    } else echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . '</br>';
                 }
             }
     }

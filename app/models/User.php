@@ -54,4 +54,9 @@ class User
         return Database::getRow($sql);
     }
 
+    public function checkRole($role)
+    {
+
+    }
+
 }
