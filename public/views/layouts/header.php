@@ -6,11 +6,9 @@
                 <button class="openModal" data-modal="logIn">Log In</button>
             </div>
 
-            <div id="authUser" style="display: none">
-                <p id="userName"></p>
-                <button id="logoutBtn" type="button" class="">
-                    Log Out
-                </button>
+            <div id="authUser" style="">
+                <p id="userName"><?php echo($_SESSION['user_id'])?></p>
+                <a href="../routes/auth.php?action=logout" id="logoutBtn"class="">Log Out</a>
             </div>
         </div>
 
@@ -22,3 +20,4 @@
 
     </div>
 </header>
+

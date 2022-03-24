@@ -1,19 +1,32 @@
 <?php
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php');
-
+include_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php');
 
 use App\Models\User;
-use App\Controllers\Auth\Auth;
 
-var_dump($_POST);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'signin') {
+    $user = new User();
+    $result = $user->new(strip_tags($_POST['name']),
+        strip_tags($_POST['email']),
+        strip_tags($_POST['pass']));
+    session_start();
+    $_SESSION['user_id'] = $result;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'register'){
-    $user = new User($_POST['userName'], $_POST['userEmail'], $_POST['userRole'], $_POST['userPass']);
-    echo(new Auth())->register($user);
+    header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login'){
-    $user = new User($_POST['userName'], $_POST['userEmail'], $_POST['userRole'], $_POST['userPass']);
-    echo(new Auth())->login($user);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
+    $user = new User();
+    $result = $user->login(strip_tags($_POST['email']), strip_tags($_POST['pass']));
+    if ($result){
+        session_start();
+        $_SESSION['user_id'] = $result['id'];
+        header("Location: ../public/dashboard.php");
+    } else echo 'LogIn Error';
 }
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'logout'){
+        session_start();
+        unset($_SESSION['user_id']);
+        session_destroy();
+        header("Location: ../public/index.php");
+}
+
