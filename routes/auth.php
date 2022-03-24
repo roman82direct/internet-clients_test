@@ -21,8 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
         session_start();
         $_SESSION['user_id'] = $result['id'];
         header("Location: ../public/dashboard.php");
-    } else echo 'LogIn Error';
+    } else echo 'Auth Error';
 }
+
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'logout'){
         session_start();
         unset($_SESSION['user_id']);

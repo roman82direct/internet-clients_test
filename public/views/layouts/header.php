@@ -1,14 +1,14 @@
 <header>
     <div>
         <div id="header">
-            <div id="authBlock">
+            <div style="display: <?=($user) ? 'none' : 'block'?>" id="authBlock">
                 <button class="openModal" data-modal="signIn">Register</button>
                 <button class="openModal" data-modal="logIn">Log In</button>
             </div>
 
             <div id="authUser" style="">
-                <p id="userName"><?php echo($_SESSION['user_id'])?></p>
-                <a href="../routes/auth.php?action=logout" id="logoutBtn"class="">Log Out</a>
+                <p id="userName"><?php echo($user['name'])?></p>
+                <a style="display: <?=(!$user) ? 'none' : 'block'?>" href="../routes/auth.php?action=logout" id="logoutBtn"class="">Log Out</a>
             </div>
         </div>
 
