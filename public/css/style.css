@@ -89,11 +89,21 @@ footer{
 }
 /*End modal*/
 
+.adminSection{
+    padding: 1rem;
+}
+.adminSection form{
+    width: 600px;
+}
 .createForm{
     border: none;
-    width: 500px;
-    margin: 0 auto;
-    padding: 0px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
 }
+
+.createForm input, textarea{
+    margin-bottom: 1rem;
+    width: 50%;
+}
+

@@ -33,63 +33,53 @@ $goods = (new Good())::getAll();
     }
 
     ?>
+    <hr>
 </section>
 
-<section style="display: <?=($user['role'] == 'admin') ? 'block' : 'none'?>">
-    <div>
-        <h5>Форма загрузки Main Categories</h5>
-        <div>
-            <form action="../routes/actions.php" method="POST">
-                <fieldset class="createForm">
-                    <input type="hidden" name="action" value="main"><br>
-                    <input type="text" name="name" placeholder="Название" autofocus>
-                    <textarea name="description" placeholder="Описание"></textarea>
-                </fieldset>
-                <input type="submit" value="Добавить">
-            </form>
-        </div>
-    </div>
+<section class="adminSection" style="display: <?=($user['role'] == 'admin') ? 'block' : 'none'?>">
+    <h3 style="text-align: center">Admin dashboard</h3>
+    <p>Форма загрузки Main Categories</p>
+    <form action="../routes/actions.php" method="POST">
+        <fieldset class="createForm">
+            <input type="hidden" name="action" value="main"><br>
+            <input type="text" name="name" placeholder="Название" autofocus>
+            <textarea name="description" placeholder="Описание"></textarea>
+        </fieldset>
+        <input type="submit" value="Добавить">
+    </form>
 
-    <div>
-        <h5>Форма загрузки Second Categories</h5>
-        <div>
-            <form action="../routes/actions.php" method="POST">
-                <fieldset class="createForm">
-                    <input type="hidden" name="action" value="second">
-                    <input type="text" name="name" placeholder="Название" autofocus>
-                    <textarea name="description" placeholder="Описание"></textarea>
-                    <input name="main_category_id" list="<main_category>" placeholder="Выберите главную категорию">
-                    <datalist id="<main_category>">
-                        <?php foreach ($main_categories as $main_category) {
-                            echo ('<option value="'.$main_category['id'].'">');
-                        } ?>
-                    </datalist>
-                </fieldset>
-                <input type="submit" value="Добавить">
-            </form>
-        </div>
-    </div>
+    <p>Форма загрузки Second Categories</p>
+    <form action="../routes/actions.php" method="POST">
+        <fieldset class="createForm">
+            <input type="hidden" name="action" value="second">
+            <input type="text" name="name" placeholder="Название" autofocus>
+            <textarea name="description" placeholder="Описание"></textarea>
+            <input name="main_category_id" list="<main_category>" placeholder="Выберите главную категорию">
+            <datalist id="<main_category>">
+                <?php foreach ($main_categories as $main_category) {
+                    echo ('<option value="'.$main_category['id'].'">');
+                } ?>
+            </datalist>
+        </fieldset>
+        <input type="submit" value="Добавить">
+    </form>
 
-    <div>
-        <h5>Форма загрузки Товаров</h5>
-        <div>
-            <form action="../routes/actions.php" method="POST">
-                <fieldset class="createForm">
-                    <input type="hidden" name="action" value="good"><br>
-                    <input type="text" name="name" placeholder="Название" autofocus>
-                    <input type="text" name="art" placeholder="Артикул">
-                    <textarea name="description" placeholder="Описание"></textarea>
+    <p>Форма загрузки Товаров</p>
+    <form action="../routes/actions.php" method="POST">
+        <fieldset class="createForm">
+            <input type="hidden" name="action" value="good"><br>
+            <input type="text" name="name" placeholder="Название" autofocus>
+            <input type="text" name="art" placeholder="Артикул">
+            <textarea name="description" placeholder="Описание"></textarea>
 
-                    <input name="second_category_id" list="<second_category>" placeholder="Выберите категорию второго уровня">
-                    <datalist id="<second_category>">
-                        <?php foreach ($second_categories as $second_category) {
-                            echo ('<option value="'.$second_category['id'].'">');
-                        } ?>
-                    </datalist>
-                </fieldset>
-                <input type="submit" value="Добавить">
-            </form>
-        </div>
-    </div>
+            <input name="second_category_id" list="<second_category>" placeholder="Выберите категорию второго уровня">
+            <datalist id="<second_category>">
+                <?php foreach ($second_categories as $second_category) {
+                    echo ('<option value="'.$second_category['id'].'">');
+                } ?>
+            </datalist>
+        </fieldset>
+        <input type="submit" value="Добавить">
+    </form>
 
 </section>
