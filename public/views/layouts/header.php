@@ -8,7 +8,7 @@
 
             <div id="authUser" style="">
                 <p id="userName"><?php echo($user['name'])?></p>
-                <a style="display: <?=(!$user) ? 'none' : 'block'?>" href="../routes/auth.php?action=logout" id="logoutBtn"class="">Log Out</a>
+                <a style="display: <?=(!$user) ? 'none' : 'block'?>" href="../routes/auth.php?action=logout" id="logoutBtn" class="">Log Out</a>
             </div>
         </div>
 
