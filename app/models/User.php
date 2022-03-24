@@ -5,12 +5,9 @@ namespace App\Models;
 use app\config\Database;
 use Exception;
 
-class User extends Model
+class User
 {
     private const SALT ="123";
-
-    protected $role;
-
 
     public function new($name, $email, $pass)
     {
@@ -57,7 +54,9 @@ class User extends Model
         return Database::getRow($sql);
     }
 
-    public function hasRole($role){
-        return $this->role == $role;
+    public function checkRole($role)
+    {
+
     }
+
 }

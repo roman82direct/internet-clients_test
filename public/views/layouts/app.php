@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +8,8 @@
 </head>
 
 <body>
-
-    <? include_once('views/layouts/header.php')  ?>
-
-    <section id="main" class="p-4 main">
-        <div id="resp-block"></div>
-    </section>
+    <?php include_once('views/layouts/header.php')?>
+    <?php include_once('views/layouts/mainSection.php')?>
 
     <script src="js/script.js"></script>
 </body>
