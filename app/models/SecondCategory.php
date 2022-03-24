@@ -27,4 +27,10 @@ class SecondCategory extends Model
         $sql = "SELECT * FROM second_categories";
         return Database::getRows($sql);
     }
+
+    public function getByMainId($main_id)
+    {
+        $sql = "SELECT * FROM second_categories WHERE main_category_id = $main_id";
+        return Database::getRows($sql);
+    }
 }

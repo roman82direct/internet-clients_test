@@ -13,9 +13,8 @@ class Good extends Model
 {
     public function new(Request $request)
     {
-        $sql = "INSERT INTO goods (name, main_category_id, second_category_id, description, art) VALUES (:name, :main_category_id, :second_category_id, :description, :art)";
+        $sql = "INSERT INTO goods (name, second_category_id, description, art) VALUES (:name, :second_category_id, :description, :art)";
         $arg = ['name' => $request -> name ,
-                'main_category_id' => $request -> main_category_id,
                 'second_category_id' => $request -> second_category_id,
                 'description' => $request -> description,
                 'art' => $request -> art,
@@ -30,7 +29,13 @@ class Good extends Model
     }
 
     public static function getAll(){
-        $sql = "SELECT * FROM main_categories";
+        $sql = "SELECT * FROM goods";
+        return Database::getRows($sql);
+    }
+
+    public function getByCategorieId($sec_id)
+    {
+        $sql = "SELECT * FROM goods WHERE goods.second_category_id = $sec_id";
         return Database::getRows($sql);
     }
 }

@@ -88,3 +88,12 @@ footer{
     margin: 10px;
 }
 /*End modal*/
+
+.createForm{
+    border: none;
+    width: 500px;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}

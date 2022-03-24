@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'second') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'good') {
     $request = new Request();
-   (new GoodController())->create($request);
+    (new GoodController())->create($request);
 
-   header("Location: ../public/dashboard.php");
+    header("Location: ../public/dashboard.php");
+
 }

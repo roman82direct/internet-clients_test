@@ -9,9 +9,6 @@ class User extends Model
 {
     private const SALT ="123";
 
-    protected $role;
-
-
     public function new($name, $email, $pass)
     {
         $sql = "INSERT INTO users (name, email, pass) VALUES (:name, :email, :pass)";
@@ -57,7 +54,4 @@ class User extends Model
         return Database::getRow($sql);
     }
 
-    public function hasRole($role){
-        return $this->role == $role;
-    }
 }
