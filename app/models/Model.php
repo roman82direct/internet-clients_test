@@ -16,12 +16,4 @@ abstract class Model
     {
         return $this->id;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }

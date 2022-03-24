@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +9,7 @@
 
 <body>
     <?php include_once('views/layouts/header.php')?>
-    <?php include_once('views/layouts/mainSection.php')  ?>
+    <?php include_once('views/layouts/mainSection.php')?>
 
     <script src="js/script.js"></script>
 </body>
