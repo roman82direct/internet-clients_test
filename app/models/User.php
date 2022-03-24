@@ -5,7 +5,7 @@ namespace App\Models;
 use app\config\Database;
 use Exception;
 
-class User extends Model
+class User
 {
     private const SALT ="123";
 

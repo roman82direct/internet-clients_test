@@ -25,5 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'good') {
     (new GoodController())->create($request);
 
     header("Location: ../public/dashboard.php");
+}
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'good') {
+    $request = new Request();
+    (new GoodController())->delete($request);
+
+    header("Location: ../public/dashboard.php");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'second') {
+    $request = new Request();
+    (new SecondCategoryController())->delete($request);
+
+    header("Location: ../public/dashboard.php");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'main') {
+    $request = new Request();
+    (new MainCategoryController())->delete($request);
+
+    header("Location: ../public/dashboard.php");
 }

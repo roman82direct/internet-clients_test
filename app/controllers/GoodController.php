@@ -13,4 +13,9 @@ class GoodController extends Controller
     public function create(Request $request) {
         return (new Good())->new($request);
     }
+
+    public function delete(Request $request)
+    {
+        return (new Good())->delete($request->id);
+    }
 }

@@ -8,7 +8,7 @@ use app\config\Database;
 use App\Request\Request;
 use Exception;
 
-class MainCategory extends Model
+class MainCategory
 {
     public function new(Request $request)
     {
@@ -26,6 +26,12 @@ class MainCategory extends Model
     public static function getAll(){
         $sql = "SELECT * FROM main_categories";
         return Database::getRows($sql);
+    }
+
+    public function delete($id)
+    {
+        $sql = "DElETE FROM main_categories WHERE id = $id";
+        return Database::delete($sql);
     }
 
 }

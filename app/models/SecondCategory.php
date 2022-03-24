@@ -8,7 +8,7 @@ use app\config\Database;
 use App\Request\Request;
 use Exception;
 
-class SecondCategory extends Model
+class SecondCategory
 {
     public function new(Request $request)
     {
@@ -33,4 +33,11 @@ class SecondCategory extends Model
         $sql = "SELECT * FROM second_categories WHERE main_category_id = $main_id";
         return Database::getRows($sql);
     }
+
+    public function delete($id)
+    {
+        $sql = "DElETE FROM second_categories WHERE id = $id";
+        return Database::delete($sql);
+    }
+
 }

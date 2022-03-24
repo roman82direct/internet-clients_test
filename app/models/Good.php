@@ -8,7 +8,7 @@ use app\config\Database;
 use App\Request\Request;
 use Exception;
 
-class Good extends Model
+class Good
 
 {
     public function new(Request $request)
@@ -37,5 +37,11 @@ class Good extends Model
     {
         $sql = "SELECT * FROM goods WHERE goods.second_category_id = $sec_id";
         return Database::getRows($sql);
+    }
+
+    public function delete($id)
+    {
+        $sql = "DElETE FROM goods WHERE id = $id";
+        return Database::delete($sql);
     }
 }
