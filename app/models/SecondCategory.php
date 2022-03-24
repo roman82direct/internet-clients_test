@@ -1,0 +1,30 @@
+<?php
+
+
+namespace App\Models;
+
+
+use app\config\Database;
+use App\Request\Request;
+use Exception;
+
+class SecondCategory extends Model
+{
+    public function new(Request $request)
+    {
+        $sql = "INSERT INTO second_categories (name, description, main_category_id) VALUES (:name, :description, :main_category_id)";
+        $arg = ['name' => $request -> name , 'description' => $request -> description, 'main_category_id' => $request -> main_category_id];
+        try {
+            $res = Database::insert($sql, $arg);
+        }
+        catch (Exception $exception){
+            $res = $exception->getMessage();
+        }
+        return $res;
+    }
+
+    public static function getAll(){
+        $sql = "SELECT * FROM second_categories";
+        return Database::getRows($sql);
+    }
+}
