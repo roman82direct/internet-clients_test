@@ -30,6 +30,41 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.modal.active').classList.remove('active');
         this.classList.remove('active');
     });
+
+    // Show tree of etinities
+
+    var mainLi = document.querySelectorAll('.mainLi')
+    var secondLi = document.querySelectorAll('.secondLi')
+
+    mainLi.forEach(function(item){
+
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var id = this.getAttribute('data-main')
+                secondLi = document.querySelectorAll('.secondLi[data-target=second_' + id + ']');
+
+                secondLi.forEach(function (item){
+                    item.classList.remove('hidden')
+                    item.classList.add('show');
+                })
+       });
+    });
+
+    secondLi.forEach(function (item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var id = this.getAttribute('data-second')
+            var goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
+
+            goodLi.forEach(function (item){
+                item.classList.remove('hidden')
+                item.classList.add('show');
+            })
+        });
+    })
+
 });
 
 document.body.addEventListener('keyup', function (e) {

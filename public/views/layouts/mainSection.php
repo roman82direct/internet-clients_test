@@ -10,31 +10,36 @@ $second_categories = (new SecondCategory())::getAll();
 $goods = (new Good())::getAll();
 ?>
 <section>
-    <?php
-    foreach ($main_categories as $main_category){
-        if ($user['role'] == 'admin'){
-            echo '</br>'.$main_category['name'].' id = '.$main_category['id'].' '.
-                '<a href="../routes/actions.php?action=main&id='.$main_category['id'].'">Удалить</a>'. '</br>';
-        } else echo '</br>'.$main_category['name'].' id = '.$main_category['id'].'</br>';
+    <ul>
+        <?php foreach ($main_categories as $main_category) { ?>
+            <li class="mainLi" data-main="<?=$main_category['id']?>"><?php echo $main_category['name']; ?>
+                <?php if ($user['role'] == 'admin') {?>
+                    <a href="../routes/actions.php?action=main&id=<?=$main_category['id']?>">Удалить</a>
+                <?php }?>
+                <ul>
+                    <?php foreach ((new SecondCategory())->getByMainId($main_category['id']) as $item) { ?>
+                    <li class="secondLi hidden" data-second="<?=$item['id']?>" data-target="second_<?=$main_category['id']?>"><?php echo $item['name']; ?>
+                        <?php if ($user['role'] == 'admin') {?>
+                        <a href="../routes/actions.php?action=second&id=<?=$item['id']?>">Удалить</a>
+                        <?php }?>
+                        <ul>
+                            <?php foreach ((new Good())->getByCategorieId($item['id']) as $good) { ?>
+                            <li class="goodLi hidden" data-target="good_<?=$item['id']?>">
+                                <?php echo $good['name']; ?>
+                                <?php if ($user['role'] == 'admin') {?>
+                                    <a href="../routes/actions.php?action=good&id=<?=$good['id']?>">Удалить</a>
+                                    <a href="editor.php?action=updategood&id=<?=$good['id']?>">Редактировать</a>
+                                <?php }?>
+                            </li>
+                            <?php }?>
+                        </ul>
 
-            foreach ((new SecondCategory())->getByMainId($main_category['id']) as $second_category) {
-                if ($user['role'] == 'admin') {
-                    echo '_ _ _' . $second_category['name'] . ' id = ' . $second_category['id'] . ' ' .
-                        '<a href="../routes/actions.php?action=second&id=' . $second_category['id'] . '">Удалить</a>' . '</br>';
-                } else echo '_ _ _' . $second_category['name'] . ' id = ' . $second_category['id'] . '</br>';
-
-                foreach ((new Good())->getByCategorieId($second_category['id']) as $item) {
-                    if ($user['role'] == 'admin') {
-                        echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . ' ' .
-                            '<a href="../routes/actions.php?action=good&id=' . $item['id'] . '">Удалить</a>' .' или '.
-                            '<a href="editor.php?action=updategood&id=' . $item['id'] . '">Редактировать</a>' .
-                            '</br>';
-                    } else echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . '</br>';
-                }
-            }
-    }
-    ?>
-    <hr>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </li>
+        <?php }?>
+    </ul>
 </section>
 
 <section class="adminSection" style="display: <?=($user['role'] == 'admin') ? 'block' : 'none'?>">
@@ -82,5 +87,4 @@ $goods = (new Good())::getAll();
         </fieldset>
         <input type="submit" value="Добавить">
     </form>
-
 </section>
