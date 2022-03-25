@@ -33,7 +33,6 @@ $goods = (new Good())::getAll();
                 }
             }
     }
-
     ?>
     <hr>
 </section>
