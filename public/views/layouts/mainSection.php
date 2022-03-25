@@ -26,7 +26,9 @@ $goods = (new Good())::getAll();
                 foreach ((new Good())->getByCategorieId($second_category['id']) as $item) {
                     if ($user['role'] == 'admin') {
                         echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . ' ' .
-                            '<a href="../routes/actions.php?action=good&id=' . $item['id'] . '">Удалить</a>' . '</br>';
+                            '<a href="../routes/actions.php?action=good&id=' . $item['id'] . '">Удалить</a>' .' или '.
+                            '<a href="editor.php?action=updategood&id=' . $item['id'] . '">Редактировать</a>' .
+                            '</br>';
                     } else echo '_ _ _ _ _' . $item['name'] . ' id = ' . $item['id'] . '</br>';
                 }
             }

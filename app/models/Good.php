@@ -28,6 +28,30 @@ class Good
         return $res;
     }
 
+    public function update(Request $request)
+    {
+        $sql = "UPDATE goods SET name=:name, second_category_id=:second_category_id, description=:description, art=:art WHERE id=:id";
+        $arg = ['name' => $request -> name ,
+                'second_category_id' => $request->second_category_id,
+                'description' => $request->description,
+                'art' => $request->art,
+                'id' => $request->id
+        ];
+        try {
+            $res = Database::update($sql, $arg);
+        }
+        catch (Exception $exception){
+            $res = $exception->getMessage();
+        }
+        return $res;
+    }
+
+    public function get($id)
+    {
+        $sql = "SELECT * FROM goods WHERE id = $id";
+        return Database::getRow($sql);
+    }
+
     public static function getAll(){
         $sql = "SELECT * FROM goods";
         return Database::getRows($sql);

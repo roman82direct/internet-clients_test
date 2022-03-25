@@ -18,4 +18,9 @@ class GoodController extends Controller
     {
         return (new Good())->delete($request->id);
     }
+
+    public function put(Request $request)
+    {
+        return (new Good())->update($request);
+    }
 }

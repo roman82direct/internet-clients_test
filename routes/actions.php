@@ -44,3 +44,9 @@ if ($method == 'GET' && $request->action == 'main') {
 
     header("Location: ../public/dashboard.php");
 }
+
+if ($method == 'POST' && $request->action == 'updategood') {
+   $res = (new GoodController())->put($request);
+
+   header("Location: ../public/dashboard.php");
+}
