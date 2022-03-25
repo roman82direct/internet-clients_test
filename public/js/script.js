@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    var modalButtons = document.querySelectorAll('.openModal'),
+    let modalButtons = document.querySelectorAll('.openModal'),
         overlay      = document.querySelector('#overlay'),
         closeButtons = document.querySelectorAll('.modalClose');
 
@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show tree of etinities
 
-    var mainLi = document.querySelectorAll('.mainLi')
-    var secondLi = document.querySelectorAll('.secondLi')
+    let mainLi = document.querySelectorAll('.mainLi')
+    let secondLi = document.querySelectorAll('.secondLi')
 
     mainLi.forEach(function(item){
 
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var id = this.getAttribute('data-main')
+            let id = this.getAttribute('data-main')
                 secondLi = document.querySelectorAll('.secondLi[data-target=second_' + id + ']');
 
                 secondLi.forEach(function (item){
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var id = this.getAttribute('data-second')
-            var goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
+            let id = this.getAttribute('data-second')
+            let goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
 
             goodLi.forEach(function (item){
                 item.classList.remove('hidden')

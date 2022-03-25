@@ -12,18 +12,28 @@ $goods = (new Good())::getAll();
 <section>
     <ul>
         <?php foreach ($main_categories as $main_category) { ?>
-            <li class="mainLi" data-main="<?=$main_category['id']?>"><?php echo $main_category['name']; ?>
+            <li><?php echo $main_category['name'];
+            $second_all = (new SecondCategory())->getByMainId($main_category['id']);
+            if ($second_all){?>
+                <a class="mainLi link" data-main="<?=$main_category['id']?>" href=""> + </a>
+                <?php }?>
+
                 <?php if ($user['role'] == 'admin') {?>
                     <a href="../routes/actions.php?action=main&id=<?=$main_category['id']?>">Удалить</a>
                 <?php }?>
                 <ul>
-                    <?php foreach ((new SecondCategory())->getByMainId($main_category['id']) as $item) { ?>
-                    <li class="secondLi hidden" data-second="<?=$item['id']?>" data-target="second_<?=$main_category['id']?>"><?php echo $item['name']; ?>
+                    <?php foreach ($second_all as $item) {?>
+                    <li class="secondLi hidden" data-target="second_<?=$main_category['id']?>"><?php echo $item['name'];
+                        $goods_all = (new Good())->getByCategorieId($item['id']);
+                        if ($goods_all){?>
+                        <a class="secondLi link" data-second="<?=$item['id']?>"  data-main="<?=$main_category['id']?>" href=""> + </a>
+                        <?php }?>
+
                         <?php if ($user['role'] == 'admin') {?>
                         <a href="../routes/actions.php?action=second&id=<?=$item['id']?>">Удалить</a>
                         <?php }?>
                         <ul>
-                            <?php foreach ((new Good())->getByCategorieId($item['id']) as $good) { ?>
+                            <?php foreach ($goods_all as $good) { ?>
                             <li class="goodLi hidden" data-target="good_<?=$item['id']?>">
                                 <?php echo $good['name']; ?>
                                 <?php if ($user['role'] == 'admin') {?>
