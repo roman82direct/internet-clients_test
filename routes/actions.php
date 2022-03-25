@@ -6,43 +6,40 @@ use App\Controllers\SecondCategoryController;
 use App\Controllers\GoodController;
 use App\Request\Request;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'main') {
-    $request = new Request();
+$request = new Request();
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method == 'POST' && $request->action == 'main') {
     (new MainCategoryController())->create($request);
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'second') {
-    $request = new Request();
+if ($method == 'POST' && $request->action == 'second') {
     (new SecondCategoryController())->create($request);
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'good') {
-    $request = new Request();
+if ($method == 'POST' && $request->action == 'good') {
     (new GoodController())->create($request);
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'good') {
-    $request = new Request();
+if ($method == 'GET' && $request->action == 'good') {
     (new GoodController())->delete($request);
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'second') {
-    $request = new Request();
+if ($method == 'GET' && $request->action == 'second') {
     (new SecondCategoryController())->delete($request);
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'main') {
-    $request = new Request();
+if ($method == 'GET' && $request->action == 'main') {
     (new MainCategoryController())->delete($request);
 
     header("Location: ../public/dashboard.php");
