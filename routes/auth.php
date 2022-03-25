@@ -4,20 +4,24 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php');
 use App\Models\User;
 use App\Request\Request;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'signin') {
-    $user = new User();
-    $result = $user->new(strip_tags($_POST['name']),
-        strip_tags($_POST['email']),
-        strip_tags($_POST['pass']));
+$request = new Request();
+$method = $_SERVER['REQUEST_METHOD'];
+$user = new User();
+
+
+if ($method == 'POST' && $request -> action == 'signin') {
+    $result = $user->new(strip_tags($request->name),
+                        strip_tags($request->email),
+                        strip_tags($request->pass));
+
     session_start();
     $_SESSION['user_id'] = $result;
 
     header("Location: ../public/dashboard.php");
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
-    $user = new User();
-    $result = $user->login(strip_tags($_POST['email']), strip_tags($_POST['pass']));
+if ($method == 'POST' && $request->action == 'login') {
+    $result = $user->login(strip_tags($request->email), strip_tags($request->pass));
     if ($result){
         session_start();
         $_SESSION['user_id'] = $result['id'];
@@ -25,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'login') {
     } else echo 'Auth Error';
 }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'logout'){
+    if ($method == 'GET' && $request->action == 'logout'){
         session_start();
         unset($_SESSION['user_id']);
         session_destroy();
