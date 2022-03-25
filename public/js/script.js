@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show tree of etinities
 
-    let mainLi = document.querySelectorAll('.mainLi')
-    let secondLi = document.querySelectorAll('.secondLi')
+    var mainLi = document.querySelectorAll('.mainLi')
+    var secondLink = document.querySelectorAll('.secondlink')
 
     mainLi.forEach(function(item){
 
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            let id = this.getAttribute('data-main')
+            var id = this.getAttribute('data-main')
                 secondLi = document.querySelectorAll('.secondLi[data-target=second_' + id + ']');
 
                 secondLi.forEach(function (item){
@@ -51,12 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
        });
     });
 
-    secondLi.forEach(function (item) {
+    secondLink.forEach(function (item) {
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            let id = this.getAttribute('data-second')
-            let goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
+            var id = this.getAttribute('data-second')
+            var goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
 
             goodLi.forEach(function (item){
                 item.classList.remove('hidden')

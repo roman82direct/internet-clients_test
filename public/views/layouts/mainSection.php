@@ -26,7 +26,7 @@ $goods = (new Good())::getAll();
                     <li class="secondLi hidden" data-target="second_<?=$main_category['id']?>"><?php echo $item['name'];
                         $goods_all = (new Good())->getByCategorieId($item['id']);
                         if ($goods_all){?>
-                        <a class="secondLi link" data-second="<?=$item['id']?>"  data-main="<?=$main_category['id']?>" href=""> + </a>
+                        <a class="secondlink link" data-second="<?=$item['id']?>"  data-main="<?=$main_category['id']?>" href=""> + </a>
                         <?php }?>
 
                         <?php if ($user['role'] == 'admin') {?>
