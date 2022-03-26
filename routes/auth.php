@@ -8,7 +8,7 @@ $request = new Request();
 $method = $_SERVER['REQUEST_METHOD'];
 $user = new User();
 
-if ($method == 'POST' && $request -> action == 'signin') {
+if ($method == 'POST' && $request->action == 'signin') {
     $result = $user->new(strip_tags($request->name),
                         strip_tags($request->email),
                         strip_tags($request->pass));

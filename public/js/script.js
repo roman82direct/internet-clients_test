@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var modalId = this.getAttribute('data-modal'),
+            let modalId = this.getAttribute('data-modal'),
                 modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
 
             modalElem.classList.add('active');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeButtons.forEach(function(item){
         item.addEventListener('click', function(e) {
-            var parentModal = this.closest('.modal');
+            let parentModal = this.closest('.modal');
 
             parentModal.classList.remove('active');
             overlay.classList.remove('active');
@@ -33,38 +33,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show tree of etinities
 
-    var mainLi = document.querySelectorAll('.mainLi')
-    var secondLink = document.querySelectorAll('.secondlink')
+    let mainPlus = document.querySelectorAll('.mainPlus')
+    let secondPlus = document.querySelectorAll('.secondPlus')
 
-    mainLi.forEach(function(item){
+    mainPlus.forEach(function(item){
 
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var id = this.getAttribute('data-main')
-                secondLi = document.querySelectorAll('.secondLi[data-target=second_' + id + ']');
+            let id = this.getAttribute('data-id')
+            let secondList = document.querySelectorAll('.secondList[data-target=second_' + id + ']');
 
-                secondLi.forEach(function (item){
+                secondList.forEach(function (item){
                     item.classList.remove('hidden')
                     item.classList.add('show');
                 })
        });
     });
 
-    secondLink.forEach(function (item) {
+    secondPlus.forEach(function (item) {
         item.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var id = this.getAttribute('data-second')
-            var goodLi = document.querySelectorAll('.goodLi[data-target=good_' + id + ']');
+            let id = this.getAttribute('data-id')
+            let goodList = document.querySelectorAll('.goodList[data-target=good_' + id + ']');
 
-            goodLi.forEach(function (item){
+            goodList.forEach(function (item){
                 item.classList.remove('hidden')
                 item.classList.add('show');
             })
         });
     })
 
+    // Show descriptions
+    let mainListName = document.querySelectorAll('.mainListName')
+    let secondListName = document.querySelectorAll('.secondListName')
+    let goodName = document.querySelectorAll('.goodName')
+
+    function addShow(item, blockName){
+        return item.forEach(function (item) {
+                item.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                let id = this.getAttribute('data-id')
+                let descr = document.querySelector(blockName + id);
+                descr.classList.remove('hidden')
+                descr.classList.add('show');
+            });
+        })
+    }
+
+    addShow(mainListName, '#descrMainBlock_')
+    addShow(secondListName, '#descrSecondBlock_')
+    addShow(goodName, '#descrGoodBlock_')
 });
 
 document.body.addEventListener('keyup', function (e) {

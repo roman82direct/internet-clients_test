@@ -126,3 +126,8 @@ section .link{
 .show{
     visibility: visible;
 }
+
+.listItem{
+    display: flex;
+    align-items: center;
+}
