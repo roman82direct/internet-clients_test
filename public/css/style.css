@@ -119,15 +119,28 @@ section .link{
     text-decoration: none;
     font-size: 1.5rem;
 }
-.hidden{
-    visibility: hidden;
-}
 
 .show{
     visibility: visible;
 }
 
+.none{
+    display: none;
+}
+
 .listItem{
     display: flex;
     align-items: center;
+}
+
+.treeViewer{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+article{
+    border: 1px solid gray;
+    width: 40%;
+    height: 50vh;
 }

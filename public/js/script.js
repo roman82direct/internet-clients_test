@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let secondList = document.querySelectorAll('.secondList[data-target=second_' + id + ']');
 
                 secondList.forEach(function (item){
-                    item.classList.remove('hidden')
+                    item.classList.remove('none')
                     item.classList.add('show');
                 })
        });
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let goodList = document.querySelectorAll('.goodList[data-target=good_' + id + ']');
 
             goodList.forEach(function (item){
-                item.classList.remove('hidden')
+                item.classList.remove('none')
                 item.classList.add('show');
             })
         });
@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let mainListName = document.querySelectorAll('.mainListName')
     let secondListName = document.querySelectorAll('.secondListName')
     let goodName = document.querySelectorAll('.goodName')
+    let descView = document.querySelector('#descView')
 
     function addShow(item, blockName){
         return item.forEach(function (item) {
@@ -77,8 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let id = this.getAttribute('data-id')
                 let descr = document.querySelector(blockName + id);
-                descr.classList.remove('hidden')
-                descr.classList.add('show');
+                descView.innerHTML = ''
+                descr.classList.remove('none')
+                descr.classList.add('show')
+                descView.append(descr)
             });
         })
     }
