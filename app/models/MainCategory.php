@@ -23,6 +23,24 @@ class MainCategory
         return $res;
     }
 
+    public function update(Request $request)
+    {
+        $sql = "UPDATE main_categories SET name=:name, description=:description WHERE id=:id";
+        $arg = ['name' => $request -> name,'description' => $request->description, 'id' => $request->id];
+        try {
+            $res = Database::update($sql, $arg);
+        }
+        catch (Exception $exception){
+            $res = $exception->getMessage();
+        }
+        return $res;
+    }
+
+    public function get($id){
+        $sql = "SELECT * FROM main_categories WHERE id = $id";
+        return Database::getRow($sql);
+    }
+
     public static function getAll(){
         $sql = "SELECT * FROM main_categories";
         return Database::getRows($sql);

@@ -28,6 +28,7 @@ $goods = (new Good())::getAll();
 
                     <?php if ($user['role'] == 'admin') {?>
                         <a href="../routes/actions.php?action=main&id=<?=$main_category['id']?>">Удалить</a>
+                        <a href="editor.php?action=main&id=<?=$main_category['id']?>">Редактировать</a>
                     <?php }?>
 
                     <ul>
@@ -47,6 +48,7 @@ $goods = (new Good())::getAll();
 
                                 <?php if ($user['role'] == 'admin') {?>
                                     <a href="../routes/actions.php?action=second&id=<?=$item['id']?>">Удалить</a>
+                                    <a href="editor.php?action=second&id=<?=$item['id']?>">Редактировать</a>
                                 <?php }?>
 
                                 <ul>
@@ -59,7 +61,7 @@ $goods = (new Good())::getAll();
 
                                                 <?php if ($user['role'] == 'admin') {?>
                                                     <a href="../routes/actions.php?action=good&id=<?=$good['id']?>">Удалить</a>
-                                                    <a href="editor.php?action=updategood&id=<?=$good['id']?>">Редактировать</a>
+                                                    <a href="editor.php?action=good&id=<?=$good['id']?>">Редактировать</a>
                                                 <?php }?>
                                             </div>
 

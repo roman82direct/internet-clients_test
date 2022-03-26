@@ -13,7 +13,7 @@ class Good
 {
     public function new(Request $request)
     {
-        $sql = "INSERT INTO goods (name, second_category_id, description, art) VALUES (:name, :second_category_id, :description, :art)";
+        $sql = "INSERT INTO goods (name, upper_category_id, description, art) VALUES (:name, :second_category_id, :description, :art)";
         $arg = ['name' => $request -> name ,
                 'second_category_id' => $request -> second_category_id,
                 'description' => $request -> description,
@@ -30,9 +30,9 @@ class Good
 
     public function update(Request $request)
     {
-        $sql = "UPDATE goods SET name=:name, second_category_id=:second_category_id, description=:description, art=:art WHERE id=:id";
+        $sql = "UPDATE goods SET name=:name, upper_category_id=:second_category_id, description=:description, art=:art WHERE id=:id";
         $arg = ['name' => $request -> name ,
-                'second_category_id' => $request->second_category_id,
+                'second_category_id' => $request->upper_item_id,
                 'description' => $request->description,
                 'art' => $request->art,
                 'id' => $request->id
@@ -59,7 +59,7 @@ class Good
 
     public function getByCategorieId($sec_id)
     {
-        $sql = "SELECT * FROM goods WHERE goods.second_category_id = $sec_id";
+        $sql = "SELECT * FROM goods WHERE goods.upper_category_id = $sec_id";
         return Database::getRows($sql);
     }
 

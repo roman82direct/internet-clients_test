@@ -6,12 +6,23 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoloader.php');
 use App\Request\Request;
 use App\Models\Good;
 use App\Models\SecondCategory;
+use App\Models\MainCategory;
 
 $request = new Request();
-$method = $_SERVER['REQUEST_METHOD'];
 
-$good = (new Good())-> get($request->id);
-$second_categories = (new SecondCategory())::getAll();
+switch ($request->action) {
+    case 'main':
+        $item = (new MainCategory())->get($request->id);
+        break;
+    case 'second':
+        $item = (new SecondCategory())->get($request->id);
+        $upper_item = (new MainCategory())::getAll();
+        break;
+    case 'good':
+        $item = (new Good())->get($request->id);
+        $upper_item = (new SecondCategory())::getAll();
+        break;
+}
 
 ?>
 <!DOCTYPE html>
@@ -25,24 +36,32 @@ $second_categories = (new SecondCategory())::getAll();
 
 <body>
 
-<p>Форма редактирования Товаров</p>
+<p>Форма редактирования</p>
 <form action="../routes/actions.php" method="POST">
     <fieldset class="createForm">
-        <input type="hidden" name="action" value="updategood"><br>
-        <input type="hidden" name="id" value="<?=$good['id']?>"><br>
+        <input type="hidden" name="action" value="update<?=$request->action?>"><br>
+        <input type="hidden" name="id" value="<?=$item['id']?>"><br>
         <label for="name">name</label>
-        <input type="text" name="name" placeholder="<?=$good['name']?>" autofocus>
-        <label for="art">art</label>
-        <input type="text" name="art" placeholder="<?=$good['art']?>">
+        <input type="text" name="name" placeholder="<?=$item['name']?>" autofocus>
+
+        <?php if ($request->action == 'good'){?>
+            <label for="art">art</label>
+            <input type="text" name="art" placeholder="<?=$item['art']?>">
+        <?php }?>
         <label for="description">description</label>
-        <textarea name="description" placeholder="<?=$good['description']?>"></textarea>
-        <label for="second_category_id">second_category_id</label>
-        <input name="second_category_id" list="<second_category>" placeholder="<?=$good['second_category_id']?>">
-        <datalist id="<second_category>">
-            <?php foreach ($second_categories as $second_category) {
-                echo ('<option value="'.$second_category['id'].'">');
-            } ?>
-        </datalist>
+        <textarea name="description" placeholder="<?=$item['description']?>"></textarea>
+
+        <?php if (!is_null($upper_item)){?>
+            <label for="upper_item">upper_category_id</label>
+            <input name="upper_item_id" list="<upper_item>" placeholder="">
+
+            <datalist id="<upper_item>">
+                <?php foreach ($upper_item as $category) {
+                    echo ('<option value="'.$category['id'].'">');
+                } ?>
+            </datalist>
+        <?php }?>
+
     </fieldset>
     <input type="submit" value="Update">
 </form>

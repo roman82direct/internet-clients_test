@@ -79,9 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let id = this.getAttribute('data-id')
                 let descr = document.querySelector(blockName + id);
                 descView.innerHTML = ''
-                descr.classList.remove('none')
-                descr.classList.add('show')
-                descView.append(descr)
+                descView.innerHTML = descr.innerHTML;
             });
         })
     }

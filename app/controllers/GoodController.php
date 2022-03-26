@@ -5,7 +5,6 @@ namespace App\Controllers;
 
 
 use App\Models\Good;
-use App\Models\SecondCategory;
 use App\Request\Request;
 
 class GoodController extends Controller

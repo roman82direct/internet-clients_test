@@ -45,6 +45,18 @@ if ($method == 'GET' && $request->action == 'main') {
     header("Location: ../public/dashboard.php");
 }
 
+if ($method == 'POST' && $request->action == 'updatemain') {
+    $res = (new MainCategoryController())->put($request);
+
+    header("Location: ../public/dashboard.php");
+}
+
+if ($method == 'POST' && $request->action == 'updatesecond') {
+    $res = (new SecondCategoryController())->put($request);
+
+    header("Location: ../public/dashboard.php");
+}
+
 if ($method == 'POST' && $request->action == 'updategood') {
    $res = (new GoodController())->put($request);
 
