@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addShow(mainListName, '#descrMainBlock_')
     addShow(secondListName, '#descrSecondBlock_')
     addShow(goodName, '#descrGoodBlock_')
+
 });
 
 document.body.addEventListener('keyup', function (e) {

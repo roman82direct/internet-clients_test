@@ -6,6 +6,7 @@ use App\Controllers\SecondCategoryController;
 use App\Controllers\GoodController;
 use App\Request\Request;
 
+
 $request = new Request();
 $method = $_SERVER['REQUEST_METHOD'];
 
