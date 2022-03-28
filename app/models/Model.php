@@ -5,7 +5,7 @@ namespace App\Models;
 
 
 use app\config\Database;
-use App\Request\Request;
+
 
 abstract class Model
 {
@@ -15,7 +15,6 @@ abstract class Model
     abstract function new($params);
 
     abstract function update($params);
-
 
     public function get($id)
     {

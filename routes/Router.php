@@ -15,6 +15,7 @@ class Router
     protected $params;
     protected $itinity;
     protected $make;
+    const PATH = "Location: ../public/dashboard.php";
 
     public function __construct($method, Request $request)
     {
@@ -28,15 +29,15 @@ class Router
         switch ($this->itinity) {
             case 'main':
                 (new MainCategoryController())->delete($this->params);
-                header("Location: ../public/dashboard.php");
+                header(self::PATH);
                 break;
             case 'second':
                 (new SecondCategoryController())->delete($this->params);
-                header("Location: ../public/dashboard.php");
+                header(self::PATH);
                 break;
             case 'good':
                 (new GoodController())->delete($this->params);
-                header("Location: ../public/dashboard.php");
+                header(self::PATH);
                 break;
         }
     }
@@ -47,30 +48,30 @@ class Router
             switch ($this->itinity) {
                 case 'main':
                     (new MainCategoryController())->put($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
                 case 'second':
                     (new SecondCategoryController())->put($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
                 case 'good':
                     (new GoodController())->put($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
             }
         } else {
             switch ($this->itinity) {
                 case 'main':
                     (new MainCategoryController())->create($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
                 case 'second':
                     (new SecondCategoryController())->create($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
                 case 'good':
                     (new GoodController())->create($this->params);
-                    header("Location: ../public/dashboard.php");
+                    header(self::PATH);
                     break;
             }
         }
