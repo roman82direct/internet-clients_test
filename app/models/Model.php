@@ -12,9 +12,9 @@ abstract class Model
     protected $table;
 
 
-    abstract function new(Request $params);
+    abstract function new($params);
 
-    abstract function update(Request $params);
+    abstract function update($params);
 
 
     public function get($id)

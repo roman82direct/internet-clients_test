@@ -9,16 +9,16 @@ use App\Request\Request;
 
 class GoodController extends Controller
 {
-    public function create(Request $request) {
-        return (new Good())->new($request);
+    public function create($data) {
+        return (new Good())->new($data);
     }
 
-    public function delete(Request $request)
+    public function delete($request)
     {
-        return (new Good())->delete($request->id);
+        return (new Good())->delete($request['id']);
     }
 
-    public function put(Request $request)
+    public function put($request)
     {
         return (new Good())->update($request);
     }

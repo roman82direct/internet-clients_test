@@ -9,16 +9,16 @@ use App\Request\Request;
 
 class SecondCategoryController extends Controller
 {
-    public function create(Request $request) {
+    public function create($request) {
         return (new SecondCategory())->new($request);
     }
 
-    public function delete(Request $request)
+    public function delete($request)
     {
-        (new SecondCategory())->delete($request->id);
+        (new SecondCategory())->delete($request['id']);
     }
 
-    public function put(Request $request)
+    public function put($request)
     {
         return (new SecondCategory())->update($request);
     }

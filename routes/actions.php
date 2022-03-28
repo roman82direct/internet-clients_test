@@ -8,6 +8,4 @@ use Routes\Router;
 $request = new Request();
 $method = $_SERVER['REQUEST_METHOD'];
 
-//var_dump((new Router($method, $request))->params);
-
 (new Router($method, $request))->route();

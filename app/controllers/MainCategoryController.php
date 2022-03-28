@@ -10,16 +10,16 @@ use App\Request\Request;
 
 class MainCategoryController extends Controller
 {
-    public function create(Request $request) {
+    public function create($request) {
         return (new MainCategory())->new($request);
     }
 
-    public function delete(Request $request)
+    public function delete($request)
     {
-        (new MainCategory())->delete($request->id);
+        (new MainCategory())->delete($request['id']);
     }
 
-    public function put(Request $request)
+    public function put($request)
     {
         return (new MainCategory())->update($request);
     }
