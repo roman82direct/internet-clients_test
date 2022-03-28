@@ -13,7 +13,7 @@ class SecondCategory
     public function new(Request $request)
     {
         $sql = "INSERT INTO second_categories (name, description, upper_category_id) VALUES (:name, :description, :main_category_id)";
-        $arg = ['name' => $request -> name , 'description' => $request -> description, 'main_category_id' => $request -> main_category_id];
+        $arg = ['name' => $request -> name , 'description' => $request -> description, 'main_category_id' => $request -> upper_item_id];
         try {
             $res = Database::insert($sql, $arg);
         }

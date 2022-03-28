@@ -12,7 +12,7 @@ use App\Request\Request;
 class Router
 {
     protected $method;
-    protected $params;
+    public $params;
 
     public function __construct($method, Request $request)
     {

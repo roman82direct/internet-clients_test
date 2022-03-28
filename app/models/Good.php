@@ -15,7 +15,7 @@ class Good
     {
         $sql = "INSERT INTO goods (name, upper_category_id, description, art) VALUES (:name, :second_category_id, :description, :art)";
         $arg = ['name' => $request -> name ,
-                'second_category_id' => $request -> second_category_id,
+                'second_category_id' => $request -> upper_item_id,
                 'description' => $request -> description,
                 'art' => $request -> art,
             ];
