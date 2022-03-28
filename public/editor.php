@@ -16,11 +16,11 @@ switch ($request->action) {
         break;
     case 'second':
         $item = (new SecondCategory())->get($request->id);
-        $upper_item = (new MainCategory())::getAll();
+        $upper_item = (new MainCategory())->getAll();
         break;
     case 'good':
         $item = (new Good())->get($request->id);
-        $upper_item = (new SecondCategory())::getAll();
+        $upper_item = (new SecondCategory())->getAll();
         break;
 }
 

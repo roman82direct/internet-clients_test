@@ -6,9 +6,10 @@ use App\Models\MainCategory;
 use App\Models\SecondCategory;
 use App\Models\Good;
 
-$main_categories = (new MainCategory())::getAll();
-$second_categories = (new SecondCategory())::getAll();
-$goods = (new Good())::getAll();
+$main_categories = (new MainCategory())->getAll();
+$second_categories = (new SecondCategory())->getAll();
+$goods = (new Good())->getAll();
+
 ?>
 <section>
     <div class="treeViewer">
@@ -18,7 +19,7 @@ $goods = (new Good())::getAll();
                     <div class="listItem">
                         <p class="mainListName" data-id="<?=$main_category['id']?>"> <?php echo $main_category['name'];?></p>
 
-                        <?php $second_all = (new SecondCategory())->getByMainId($main_category['id']);
+                        <?php $second_all = (new SecondCategory())->getByCategorieId($main_category['id']);
 
                         if ($second_all){?>
                             <a class="mainPlus link" data-id="<?=$main_category['id']?>" href=""> + </a>

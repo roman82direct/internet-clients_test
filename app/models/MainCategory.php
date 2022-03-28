@@ -8,11 +8,15 @@ use app\config\Database;
 use App\Request\Request;
 use Exception;
 
-class MainCategory
+class MainCategory extends Model
 {
+
+    protected $table = 'main_categories';
+
+
     public function new(Request $request)
     {
-        $sql = "INSERT INTO main_categories (name, description) VALUES (:name, :description)";
+        $sql = "INSERT INTO $this->table (name, description) VALUES (:name, :description)";
         $arg = ['name' => $request -> name , 'description' => $request -> description];
         try {
             $res = Database::insert($sql, $arg);
@@ -34,22 +38,6 @@ class MainCategory
             $res = $exception->getMessage();
         }
         return $res;
-    }
-
-    public function get($id){
-        $sql = "SELECT * FROM main_categories WHERE id = $id";
-        return Database::getRow($sql);
-    }
-
-    public static function getAll(){
-        $sql = "SELECT * FROM main_categories";
-        return Database::getRows($sql);
-    }
-
-    public function delete($id)
-    {
-        $sql = "DElETE FROM main_categories WHERE id = $id";
-        return Database::delete($sql);
     }
 
 }
