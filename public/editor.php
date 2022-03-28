@@ -39,7 +39,8 @@ switch ($request->action) {
 <p>Форма редактирования</p>
 <form action="../routes/actions.php" method="POST">
     <fieldset class="createForm">
-        <input type="hidden" name="action" value="update<?=$request->action?>"><br>
+        <input type="hidden" name="action" value="<?=$request->action?>">
+        <input type="hidden" name="make" value="update">
         <input type="hidden" name="id" value="<?=$item['id']?>"><br>
         <label for="name">name</label>
         <input type="text" name="name" placeholder="<?=$item['name']?>" autofocus>

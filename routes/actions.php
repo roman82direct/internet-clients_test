@@ -9,3 +9,4 @@ $request = new Request();
 $method = $_SERVER['REQUEST_METHOD'];
 
 (new Router($method, $request))->route();
+

@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 
 use App\Models\SecondCategory;
-use App\Request\Request;
+
 
 class SecondCategoryController extends Controller
 {

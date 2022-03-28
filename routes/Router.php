@@ -12,69 +12,72 @@ use App\Request\Request;
 class Router
 {
     protected $method;
-    public $params;
+    protected $params;
+    protected $itinity;
+    protected $make;
 
     public function __construct($method, Request $request)
     {
      $this->method = $method;
-     $this->params = $request;
+     $this->params = $request->getRequestEntries();
+     $this->itinity = $request->action;
+     $this->make = $request->make;
+    }
+
+    public function get(){
+        switch ($this->itinity) {
+            case 'main':
+                (new MainCategoryController())->delete($this->params);
+                header("Location: ../public/dashboard.php");
+                break;
+            case 'second':
+                (new SecondCategoryController())->delete($this->params);
+                header("Location: ../public/dashboard.php");
+                break;
+            case 'good':
+                (new GoodController())->delete($this->params);
+                header("Location: ../public/dashboard.php");
+                break;
+        }
+    }
+
+    public function post()
+    {
+        if ($this->make == 'update'){
+            switch ($this->itinity) {
+                case 'main':
+                    (new MainCategoryController())->put($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+                case 'second':
+                    (new SecondCategoryController())->put($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+                case 'good':
+                    (new GoodController())->put($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+            }
+        } else {
+            switch ($this->itinity) {
+                case 'main':
+                    (new MainCategoryController())->create($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+                case 'second':
+                    (new SecondCategoryController())->create($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+                case 'good':
+                    (new GoodController())->create($this->params);
+                    header("Location: ../public/dashboard.php");
+                    break;
+            }
+        }
     }
 
     public function route()
     {
-        if ($this->method == 'POST' && $this->params->action == 'main') {
-            (new MainCategoryController())->create($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'POST' && $this->params->action == 'second') {
-            (new SecondCategoryController())->create($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'POST' && $this->params->action == 'good') {
-
-            (new GoodController())->create($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'GET' && $this->params->action == 'good') {
-            (new GoodController())->delete($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'GET' && $this->params->action == 'second') {
-            (new SecondCategoryController())->delete($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'GET' && $this->params->action == 'main') {
-            (new MainCategoryController())->delete($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'POST' && $this->params->action == 'updatemain') {
-            (new MainCategoryController())->put($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'POST' && $this->params->action == 'updatesecond') {
-            (new SecondCategoryController())->put($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
-
-        if ($this->method == 'POST' && $this->params->action == 'updategood') {
-            (new GoodController())->put($this->params->getRequestEntries());
-
-            header("Location: ../public/dashboard.php");
-        }
+        ($this->method == 'POST') ? $this->post() : $this->get();
     }
 }
