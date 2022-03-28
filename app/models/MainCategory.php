@@ -17,7 +17,7 @@ class MainCategory extends Model
     public function new(Request $request)
     {
         $sql = "INSERT INTO $this->table (name, description) VALUES (:name, :description)";
-        $arg = ['name' => $request -> name , 'description' => $request -> description];
+        $arg = ['name' => $request->name , 'description' => $request->description];
         try {
             $res = Database::insert($sql, $arg);
         }
@@ -30,7 +30,7 @@ class MainCategory extends Model
     public function update(Request $request)
     {
         $sql = "UPDATE main_categories SET name=:name, description=:description WHERE id=:id";
-        $arg = ['name' => $request -> name,'description' => $request->description, 'id' => $request->id];
+        $arg = ['name' => $request->name,'description' => $request->description, 'id' => $request->id];
         try {
             $res = Database::update($sql, $arg);
         }

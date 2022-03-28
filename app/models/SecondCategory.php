@@ -17,7 +17,7 @@ class SecondCategory extends Model
     public function new(Request $request)
     {
         $sql = "INSERT INTO $this->table (name, description, upper_category_id) VALUES (:name, :description, :main_category_id)";
-        $arg = ['name' => $request -> name , 'description' => $request -> description, 'main_category_id' => $request -> upper_item_id];
+        $arg = ['name' => $request->name , 'description' => $request->description, 'main_category_id' => $request->upper_item_id];
         try {
             $res = Database::insert($sql, $arg);
         }
@@ -30,7 +30,7 @@ class SecondCategory extends Model
     public function update(Request $request)
     {
         $sql = "UPDATE $this->table SET name=:name, description=:description, upper_category_id=:main_id WHERE id=:id";
-        $arg = ['name' => $request -> name,'description' => $request->description, 'main_id'=>$request->upper_item_id, 'id' => $request->id];
+        $arg = ['name' => $request->name,'description' => $request->description, 'main_id'=>$request->upper_item_id, 'id' => $request->id];
         try {
             $res = Database::update($sql, $arg);
         }

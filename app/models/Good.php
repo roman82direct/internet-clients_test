@@ -17,9 +17,9 @@ class Good extends Model
     {
         $sql = "INSERT INTO $this->table (name, upper_category_id, description, art) VALUES (:name, :second_category_id, :description, :art)";
         $arg = ['name' => $request -> name ,
-                'second_category_id' => $request -> upper_item_id,
-                'description' => $request -> description,
-                'art' => $request -> art,
+                'second_category_id' => $request->upper_item_id,
+                'description' => $request->description,
+                'art' => $request->art,
             ];
         try {
             $res = Database::insert($sql, $arg);

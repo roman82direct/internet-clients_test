@@ -10,16 +10,16 @@ use App\Request\Request;
 class SecondCategoryController extends Controller
 {
     public function create(Request $request) {
-        return (new SecondCategory('second_categories'))->new($request);
+        return (new SecondCategory())->new($request);
     }
 
     public function delete(Request $request)
     {
-        (new SecondCategory('second_categories'))->delete($request->id);
+        (new SecondCategory())->delete($request->id);
     }
 
     public function put(Request $request)
     {
-        return (new SecondCategory('second_categories'))->update($request);
+        return (new SecondCategory())->update($request);
     }
 }
