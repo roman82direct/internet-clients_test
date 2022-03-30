@@ -5,7 +5,7 @@
     <p>Форма загрузки Main Categories</p>
     <form action="../routes/actions.php" method="POST">
         <fieldset class="createForm">
-            <input type="hidden" name="action" value="main"><br>
+            <input type="hidden" name="action" value="mainCategory"><br>
             <input type="text" name="name" placeholder="Название" autofocus>
             <textarea name="description" placeholder="Описание"></textarea>
         </fieldset>
@@ -15,7 +15,7 @@
     <p>Форма загрузки Second Categories</p>
     <form action="../routes/actions.php" method="POST">
         <fieldset class="createForm">
-            <input type="hidden" name="action" value="second">
+            <input type="hidden" name="action" value="secondCategory">
             <input type="text" name="name" placeholder="Название" autofocus>
             <textarea name="description" placeholder="Описание"></textarea>
             <input name="upper_item_id" list="<main_category>" placeholder="Выберите главную категорию">

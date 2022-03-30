@@ -29,8 +29,8 @@ $goods = (new Good())->getAll();
                     <div id="descrMainBlock_<?=$main_category['id']?>" class="none"><?= $main_category['description'] ?></div>
 
                     <?php if ($user['role'] == 'admin') {?>
-                        <a href="../routes/actions.php?action=main&id=<?=$main_category['id']?>">Удалить</a>
-                        <a href="editor.php?action=main&id=<?=$main_category['id']?>">Редактировать</a>
+                        <a href="../routes/actions.php?action=mainCategory&id=<?=$main_category['id']?>">Удалить</a>
+                        <a href="editor.php?action=mainCategory&id=<?=$main_category['id']?>">Редактировать</a>
                     <?php }?>
 
                     <ul>
@@ -49,8 +49,8 @@ $goods = (new Good())->getAll();
                                 <div id="descrSecondBlock_<?=$item['id']?>" class="none"><?= $item['description'] ?></div>
 
                                 <?php if ($user['role'] == 'admin') {?>
-                                    <a href="../routes/actions.php?action=second&id=<?=$item['id']?>">Удалить</a>
-                                    <a href="editor.php?action=second&id=<?=$item['id']?>">Редактировать</a>
+                                    <a href="../routes/actions.php?action=secondCategory&id=<?=$item['id']?>">Удалить</a>
+                                    <a href="editor.php?action=secondCategory&id=<?=$item['id']?>">Редактировать</a>
                                 <?php }?>
 
                                 <ul>

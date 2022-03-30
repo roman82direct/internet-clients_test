@@ -7,8 +7,9 @@ namespace App\Controllers;
 use App\Models\Good;
 
 
-class GoodController extends Controller
+class GoodController
 {
+
     public function create($data) {
         return (new Good())->new($data);
     }

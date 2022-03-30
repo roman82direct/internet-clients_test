@@ -8,7 +8,7 @@ use App\Models\MainCategory;
 
 
 
-class MainCategoryController extends Controller
+class MainCategoryController
 {
     public function create($request) {
         return (new MainCategory())->new($request);

@@ -11,10 +11,10 @@ use App\Models\MainCategory;
 $request = new Request();
 
 switch ($request->action) {
-    case 'main':
+    case 'mainCategory':
         $item = (new MainCategory())->get($request->id);
         break;
-    case 'second':
+    case 'secondCategory':
         $item = (new SecondCategory())->get($request->id);
         $upper_item = (new MainCategory())->getAll();
         break;

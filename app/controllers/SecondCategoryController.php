@@ -7,7 +7,7 @@ namespace App\Controllers;
 use App\Models\SecondCategory;
 
 
-class SecondCategoryController extends Controller
+class SecondCategoryController
 {
     public function create($request) {
         return (new SecondCategory())->new($request);

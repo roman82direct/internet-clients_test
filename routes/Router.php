@@ -25,55 +25,27 @@ class Router
      $this->make = $request->make;
     }
 
+    public function getController(){
+        $prefix = $this->itinity ?? null;
+        $controllerName = 'app\controllers\\'.ucfirst($prefix).'Controller' ?? '';
+        $controller = new $controllerName();
+
+        return $controller;
+    }
+
     public function get(){
-        switch ($this->itinity) {
-            case 'main':
-                (new MainCategoryController())->delete($this->params);
-                header(self::PATH);
-                break;
-            case 'second':
-                (new SecondCategoryController())->delete($this->params);
-                header(self::PATH);
-                break;
-            case 'good':
-                (new GoodController())->delete($this->params);
-                header(self::PATH);
-                break;
-        }
+        $this->getController()->delete($this->params);
+        header(self::PATH);
     }
 
     public function post()
     {
         if ($this->make == 'update'){
-            switch ($this->itinity) {
-                case 'main':
-                    (new MainCategoryController())->put($this->params);
-                    header(self::PATH);
-                    break;
-                case 'second':
-                    (new SecondCategoryController())->put($this->params);
-                    header(self::PATH);
-                    break;
-                case 'good':
-                    (new GoodController())->put($this->params);
-                    header(self::PATH);
-                    break;
-            }
+            $this->getController()->put($this->params);
+            header(self::PATH);
         } else {
-            switch ($this->itinity) {
-                case 'main':
-                    (new MainCategoryController())->create($this->params);
-                    header(self::PATH);
-                    break;
-                case 'second':
-                    (new SecondCategoryController())->create($this->params);
-                    header(self::PATH);
-                    break;
-                case 'good':
-                    (new GoodController())->create($this->params);
-                    header(self::PATH);
-                    break;
-            }
+            $this->getController()->create($this->params);
+            header(self::PATH);
         }
     }
 
