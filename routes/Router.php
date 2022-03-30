@@ -61,6 +61,6 @@ class Router
 
     public function route()
     {
-        ($this->method == 'POST') ? self::post() : self::get();
+        ($this->method == 'POST') ? $this->post() : $this->get();
     }
 }
