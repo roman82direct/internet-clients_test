@@ -8,45 +8,44 @@ use App\Request\Request;
 
 class Router
 {
-    protected $method;
-    protected $params;
-    protected $itinity;
-    protected $make;
+    private $method;
+    private $params;
+    private $entity;
+    private $action;
     const PATH = "Location: ../public/dashboard.php";
 
     public function __construct($method, Request $request)
     {
      $this->method = $method;
      $this->params = $request->getRequestEntries();
-     $this->itinity = $request->action;
-     $this->make = $request->make;
+     $this->entity = $request->action;
+     $this->action = $request->make;
     }
 
-    public function getController(){
-        $prefix = $this->itinity ?? null;
-        $controllerName = 'app\controllers\\'.ucfirst($prefix).'Controller' ?? '';
+    private function getController(){
+        $controllerName = 'app\controllers\\'.ucfirst($this->entity).'Controller';
 
         return new $controllerName();
     }
 
-    public function get(){
-        $this->getController()->delete($this->params);
+   private function get(){
+       $this->getController()->delete($this->params);
         header(self::PATH);
     }
 
-    public function post()
+    private function post()
     {
-        if ($this->make == 'update'){
-            $this->getController()->put($this->params);
+        if ($this->action == 'update'){
+            self::getController()->put($this->params);
             header(self::PATH);
         } else {
-            $this->getController()->create($this->params);
+            self::getController()->create($this->params);
             header(self::PATH);
         }
     }
 
     public function route()
     {
-        ($this->method == 'POST') ? $this->post() : $this->get();
+        ($this->method == 'POST') ? self::post() : self::get();
     }
 }
