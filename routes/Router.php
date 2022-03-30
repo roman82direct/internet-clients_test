@@ -22,25 +22,40 @@ class Router
      $this->action = $request->make;
     }
 
-    private function getController(){
+    protected function getController(){
         $controllerName = 'app\controllers\\'.ucfirst($this->entity).'Controller';
 
         return new $controllerName();
     }
 
-   private function get(){
-       $this->getController()->delete($this->params);
-        header(self::PATH);
+   protected function get(){
+       if ($this->entity =='user'){
+           $this->getController()->logOut();
+       } else {
+           $this->getController()->delete($this->params);
+           header(self::PATH);
+       }
     }
 
-    private function post()
+    protected function post()
     {
-        if ($this->action == 'update'){
-            self::getController()->put($this->params);
-            header(self::PATH);
-        } else {
-            self::getController()->create($this->params);
-            header(self::PATH);
+        if ($this->entity =='user'){
+            if ($this->action == 'signIn'){
+                self::getController()->signIn($this->params);
+                header(self::PATH);
+            } else {
+                self::getController()->logIn($this->params);
+                header(self::PATH);
+            }
+
+        }   else {
+            if ($this->action == 'update'){
+                self::getController()->put($this->params);
+                header(self::PATH);
+            } else {
+                self::getController()->create($this->params);
+                header(self::PATH);
+            }
         }
     }
 

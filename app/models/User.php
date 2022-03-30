@@ -9,10 +9,10 @@ class User
 {
     private const SALT ="123";
 
-    public function new($name, $email, $pass)
+    public function new($data)
     {
         $sql = "INSERT INTO users (name, email, pass) VALUES (:name, :email, :pass)";
-        $arg = ['name' => $name, 'email' => $email, 'pass' => md5($pass).self::SALT];
+        $arg = ['name' => $data['name'], 'email' => $data['email'], 'pass' => md5($data['pass']).self::SALT];
         try {
             $res = Database::insert($sql, $arg);
         }
@@ -22,16 +22,16 @@ class User
         return $res;
     }
 
-    public function login($email, $pass)
+    public function login($data)
     {
         $sql = "SELECT id, name, email, pass, role FROM users WHERE email = :email";
-        $arg = ['email' => $email];
-        $passHash = md5($pass).self::SALT;
+        $arg = ['email' => $data['email']];
+        $passHash = md5($data['pass']).self::SALT;
 
         $user = Database::getRow($sql, $arg);
 
         if ($user){
-            if ($user['email'] == $email){
+            if ($user['email'] == $data['email']){
                 if ($user['pass'] == $passHash){
                     $this->id = $user['id'];
                     $this->name = $user['name'];
