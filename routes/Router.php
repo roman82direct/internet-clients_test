@@ -4,9 +4,6 @@
 namespace routes;
 
 
-use App\Controllers\GoodController;
-use App\Controllers\MainCategoryController;
-use App\Controllers\SecondCategoryController;
 use App\Request\Request;
 
 class Router
@@ -28,9 +25,8 @@ class Router
     public function getController(){
         $prefix = $this->itinity ?? null;
         $controllerName = 'app\controllers\\'.ucfirst($prefix).'Controller' ?? '';
-        $controller = new $controllerName();
 
-        return $controller;
+        return new $controllerName();
     }
 
     public function get(){
